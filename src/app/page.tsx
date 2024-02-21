@@ -302,7 +302,7 @@ const SkeletonLoading = () => {
 
         {/* 7 day forecast data  */}
         <section className="flex w-full flex-col gap-4 ">
-          <p className="text-2xl animate-pulse">Forecast (7 days)</p>
+          <p className="text-2xl animate-pulse">This Week!</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[...Array(7)].map((_, i) => (
               <div key={i} className="animate-pulse">

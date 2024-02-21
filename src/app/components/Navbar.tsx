@@ -127,8 +127,8 @@ export default function Navbar({location}: Props) {
         </div>
       </nav>
 
-      <section className='flex max-w-7xl px-3 md:hidden'>
-        <div className='relative pl-1'>
+      <section className='flex max-w-7xl px-3 justify-center md:hidden'>
+        <div className='relative'>
             <SearchBox
             value={city}
             onSubmit={handleSubmitSearch}

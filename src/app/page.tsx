@@ -252,7 +252,9 @@ export default function Home() {
               ))}
             </section>
           </>}
-        
+          <footer className="flex justify-center items-center">
+          <div className=" text-sm text-black/40 font-semibold ">{new Date().getFullYear()}@Ayush B. All rights reserved. </div>
+        </footer>
       </main>
     </div>
   );
@@ -319,6 +321,8 @@ const SkeletonLoading = () => {
             ))}
           </div>
         </section>
+
+        
       </>
     </main>
   );

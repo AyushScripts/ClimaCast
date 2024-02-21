@@ -51,7 +51,7 @@ export default function Navbar({location}: Props) {
   function handleSubmitSearch(e: React.FormEvent<HTMLFormElement> ) {
     setLoadingCity(true);
     e.preventDefault()
-    if(suggestions.length<0) {
+    if(suggestions.length==0) {
       setError("Location not found");
       
     } else{
@@ -67,25 +67,24 @@ export default function Navbar({location}: Props) {
   
   async function handleInputChange(value: string) {
     setCity(value);
-    if(value.length>=3){
+    if (value.length >= 3) {
       try {
-        const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=4be1a29534569345199cc69d3cfa8417&cnt=56`);
+        const response = await axios.get(
+          `https://api.openweathermap.org/data/2.5/find?q=${value}&appid=4be1a29534569345199cc69d3cfa8417`
+        );
 
-        const suggestion = response.data.list.map((item: any) =>item.name);
+        const suggestions = response.data.list.map((item: any) => item.name);
         setSuggestions(suggestions);
         setError("");
         setShowSuggestions(true);
-      }
-      catch (error) {
+      } catch (error) {
         setSuggestions([]);
         setShowSuggestions(false);
       }
-    } 
-    else{
+    } else {
       setSuggestions([]);
-        setShowSuggestions(false);
+      setShowSuggestions(false);
     }
-
   }
   
   
@@ -161,7 +160,7 @@ function SuggestionBox(
   }
 ) {
   return(
-  <> {((showSuggestions && suggestions.length >1) || error) && 
+  <> {((showSuggestions && suggestions.length >0) || error) && 
      <ul className='mb-4 bg-white absolute border top-[44px] left-0 border-gray-300 rounded-md min-w-[200px] flex flex-col gap-1 py-2 px-2'>
       {error && suggestions.length < 1 && (<li className='text-red-500 p-1'> {error} </li>)}
       {suggestions.map((item,i)=> (

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { TiWeatherSunny } from "react-icons/ti";
+import { TiWeatherSnow, TiWeatherSunny } from "react-icons/ti";
 import { FaLocationCrosshairs } from "react-icons/fa6";
 import { FaLocationDot } from "react-icons/fa6";
 import SearchBox from './SearchBox';
@@ -90,23 +90,23 @@ export default function Navbar({location}: Props) {
   
   return (
     <>
-    <nav className="shadow-sm  sticky top-0 left-0 z-50 bg-white">
+    <nav className="shadow-sm  sticky top-0 left-0 z-50 bg-[#eaeaea]">
         <div className="h-[80px]     w-full    flex   justify-between items-center  max-w-7xl px-3 mx-auto">
           <div className="flex items-center justify-center gap-2  ">
-            <h2 className="text-gray-500 text-3xl">ClimaCast</h2>
-            <TiWeatherSunny className='text-3xl mt-1 text-yellow-300'/>
+            <h2 className="text-[#333333] text-3xl font-serif tracking-wider">ClimaCast</h2>
+            <TiWeatherSnow className='text-3xl text-blue-500'
+/>
           </div>
-
           {/*  */}
 
           <section className='flex gap-2 items-center px-2'>
             <FaLocationCrosshairs 
             onClick={handleCurrentLocation}
             title='Your Current Location'
-            className='text-2xl text-blue-400 hover:opacity-80 cursor-pointer'/>
-            <FaLocationDot className='text-2xl text-black-200/20' />
+            className='text-2xl text-blue-500 hover:opacity-80 cursor-pointer'/>
+            <FaLocationDot className='text-2xl text-[#413030]' />
             
-            <p className='text-slate-900/80 text-base'>{location}</p>
+            <p className='text-[#413030] text-base'>{location}</p>
             <div className='relative hidden md:flex pl-1'>
             <SearchBox
             value={city}

@@ -121,7 +121,7 @@ export default function Home() {
   )
 
   return (
-    <div className="flex flex-col gap-4 bg-gray-100 min-h-screen">
+    <div className="flex flex-col gap-4 bg-[#3b5998] min-h-screen">
       <Navbar location={data?.city.name}/>
       <main className="px-3 max-w-7xl mx-auto flex flex-col gap-9  w-full  pb-10 pt-4 ">
         {loadingCity ? <SkeletonLoading/> :
@@ -130,8 +130,8 @@ export default function Home() {
             {/* today data  */}
             <section className="space-y-4 ">
               <div className="space-y-2">
-                <h2 className="flex gap-1 text-2xl  items-end ">
-                  <p>{format(parseISO(firstData?.dt_txt ?? ""), "EEEE")}</p>
+                <h2 className="flex gap-1 text-2xl  items-end text-[#bbcbe0] ">
+                  <p className="font-semibold">{format(parseISO(firstData?.dt_txt ?? ""), "EEEE")}</p>
                   <p className="text-lg">
                     ({format(parseISO(firstData?.dt_txt ?? ""), "dd.MM.yyyy")})
                   </p>
@@ -189,8 +189,8 @@ export default function Home() {
               </div>
               <div className=" flex gap-4">
                 {/* left  */}
-                <Container className="w-fit  justify-center flex-col px-4 items-center ">
-                  <p className=" capitalize text-center">
+                <Container className="w-fit  justify-center border border-none flex-col px-4 items-center bg-[#9dc5e6]">
+                  <p className=" capitalize text-center font-semibold">
                     {firstData?.weather[0].description}{" "}
                   </p>
                   <WeatherIcons
@@ -200,7 +200,8 @@ export default function Home() {
                     )}
                   />
                 </Container>
-                <Container className="bg-yellow-300/80  px-6 gap-4 justify-between overflow-x-auto">
+                {/* right  */}
+                <Container className="bg-[#ffeb3b]  px-6 gap-4 justify-between overflow-x-auto">
                   <WeatherDetails
                     visibility={metersToKilometers(
                       firstData?.visibility ?? 10000
@@ -218,20 +219,20 @@ export default function Home() {
                     windSpeed={convertWindSpeed(firstData?.wind.speed ?? 1.64)}
                   />
                 </Container>
-                {/* right  */}
+                
               </div>
             </section>
 
             {/* 7 day forcast data  */}
             <section className="flex w-full flex-col gap-4  ">
-              <p className="text-2xl">This Week</p>
+              <p className="text-2xl font-semibold text-[#bbcbe0]">This Week</p>
               {firstDataForEachDate.map((d, i) => (
                 <ForecastWeatherDetails
                   key={i}
                   description={d?.weather[0].description ?? ""}
                   weatherIcon={d?.weather[0].icon ?? "01d"}
-                  date={format(parseISO(d?.dt_txt ?? ""), "dd.MM")}
-                  day={format(parseISO(d?.dt_txt ?? ""), "EEEE")}
+                  date={d ? format(parseISO(d.dt_txt), "dd.MM"): ""}
+                  day={d ? format(parseISO(d.dt_txt), "EEEE"): ""}
                   feels_like={d?.main.feels_like ?? 0}
                   temp={d?.main.temp ?? 0}
                   temp_max={d?.main.temp_max ?? 0}
